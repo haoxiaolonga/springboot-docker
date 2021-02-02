@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <!--应用名称-->
+    <property name="APP_NAME" value="testDockerElk"/>
+    <!--日志文件保存路径-->
+    <property name="LOG_FILE_PATH" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/logs}"/>
+    <contextName>${APP_NAME}</contextName>
+    <!--每天记录日志到文件appender-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/logback/springboot_%d{yyyy-M-d}.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-M-d HH:mm:ss} %t %p %m%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="socket"
+              class="net.logstash.logback.appender.LogstashSocketAppender">
+        <host>127.0.0.1</host>
+        <port>5044</port>
+    </appender>
+
+    <appender name="stash"
+              class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>127.0.0.1:5044</destination>
+
+        <encoder charset="UTF-8"
+                 class="net.logstash.logback.encoder.LogstashEncoder" >
+            <providers>
+                <pattern>
+                    <pattern>
+                        <!--输出日志可自定义，可根据自己需要配置-->
+                        {
+                        <!--es索引名称 -->
+                        "indexname":"test_logstash",
+                        <!--应用名称 -->
+                        "appname":"${spring.application.name}",
+                        <!--服务器ip -->
+                        "host": "%ip",
+                        <!--应用端口 -->
+                        "port": "${spring.application.index}",
+                        <!--打印时间 -->
+                        "timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                        <!--线程名称 -->
+                        "thread": "%thread",
+                        <!--日志级别 -->
+                        "level": "%level",
+                        <!--日志名称 -->
+                        "logger_name": "%logger",
+                        <!--日志信息 -->
+                        "message": "%msg",
+                        <!--日志堆栈 -->
+                        "stack_trace": "%exception"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+
+
+
+
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+<!--        <appender-ref ref="stash"/>-->
+<!--        <appender-ref ref="socket"/>-->
+    </root>
+</configuration>
