@@ -1,6 +1,8 @@
 server:
   port: 10001
 
+
+# MQ相关配置
 spring:
   rabbitmq:
     host: 127.0.0.1
@@ -19,3 +21,15 @@ spring:
     port: 5672
     # virtual-host: /bbc6.0
     virtual-host: testVirtual
+
+# redis相关配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    database: 2
+    lettuce:
+      pool:
+        min-idle: 2
+        max-idle: 10
+        max-active: 8
