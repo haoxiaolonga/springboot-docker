@@ -33,3 +33,9 @@ spring:
         min-idle: 2
         max-idle: 10
         max-active: 8
+# mongodb相关配置
+  data:
+    mongodb:
+      host: 127.0.0.1
+      database: test
+      port: 27017
