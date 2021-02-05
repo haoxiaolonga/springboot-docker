@@ -1,4 +1,4 @@
-package com.rabbitMq;
+package com.rabbitMq_;
 
 /**
  * @author haoxl
