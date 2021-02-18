@@ -30,7 +30,7 @@ public class RedisLockTest {
     @PostMapping(value = "/setLock")
     public boolean testTryGetLock(@RequestParam String key, HttpServletRequest request) {
 
-        long value = 10;
+        String value = "10";
         boolean status = redisLock.tryGetDistributedLock(key, value, 1080L);
         if (status) {
             System.out.println("hello -- get lock，value :".concat("10"));
