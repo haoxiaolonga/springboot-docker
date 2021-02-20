@@ -1,0 +1,9 @@
+test:
+  properties:
+    number: 99
+    bootstrapStr: 测试配置
+    list: 第一个,第二个
+    arrayTest:
+      - 1000
+      - 10000
+      - 100000

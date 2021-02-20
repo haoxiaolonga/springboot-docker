@@ -1,7 +1,6 @@
 server:
   port: 10001
 
-
 # MQ相关配置
 spring:
   rabbitmq:
@@ -39,3 +38,7 @@ spring:
       host: 127.0.0.1
       database: test
       port: 27017
+  profiles:
+    include: self
+    active: dev
+
