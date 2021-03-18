@@ -1,5 +1,7 @@
 package com;
 
+import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -13,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
+@MapperScan(value = "com.transcational.mapper")
 public class DockerApplication {
     public static void main(String[] args) {
         SpringApplication.run(DockerApplication.class, args);

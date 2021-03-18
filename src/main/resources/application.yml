@@ -39,6 +39,6 @@ spring:
       database: test
       port: 27017
   profiles:
-    include: self
+    include: self,db
     active: dev
 

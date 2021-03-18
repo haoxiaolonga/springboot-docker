@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3310/testdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: system123456
+    druid:
+      initial-size: 1
+      max-active: 2000
+      min-idle: 3
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall,slf4j
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 配置监控服务器
+      stat-view-servlet:
+        # 这里一定要配置true,不配置则是使用默认值false,空白页面
+        enabled: true
+        #login-username: admin
+        #login-password: 123456
+        reset-enable: false
+        url-pattern: /druid/*
+        allow: ""
