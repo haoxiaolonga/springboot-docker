@@ -1,6 +1,8 @@
 package com.ioc_;
 
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author haoxl
@@ -24,6 +26,18 @@ public class MyTest {
      *  ioc 是思想，Di是Spring 的实现过程
      *  IOC 的好处： 解耦。
      *
+     * 最原始的注入： 在xml 里面配置一个bean(id是别名-唯一标识，class 对应类的全路径，property:属性赋值-- name的名称取决于set()方法的参数名)
+     * 1.对象在容器中默认是单例的（除非scope = prototype）
+     * 2.容器中的对象创建。
+     *      每次启动容器的时候，创建好容器中的所有对象，最好保留一个无参构造函数，bean
+     *      创建是通过反射，class.newInstance()默认是调用无参的constructor ---现在是用的class.getDeclaredConstructor().newInstance();
+     *
+     * 总结：Spring创建对象的过程
+     *  通过applicationContext这个IOC容器的入口，用它的两个具体的实现子类，从classPATH或者filepath中读取的数据，
+     *  用getBean()获取具体的bean instance.
+     *
+     *  spring 帮我们省略了手动阀创建对象new 的过程，将其交给容器来创建和管理，达到解耦的效果。
+     *
      */
     @Test
     public void myTest(){
@@ -37,6 +51,10 @@ public class MyTest {
         rectangle.setlength(10);
         rectangle.setWidth(10);
         System.out.println(rectangle);
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("xx.xml");
+        Rectangle rectangle1 = context.getBean(Rectangle.class);
+        System.out.println(rectangle1);
     }
 
 }
