@@ -43,8 +43,8 @@ public class JsonController {
 
         return new HashMap(2) { //threshold = 2
             {
-                put("user", "tom1");
-                put("name", "tom2");
+                put("springboot", "local");
+                put("springboot", "local");
             }
         };
     }

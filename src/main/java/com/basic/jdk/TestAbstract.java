@@ -1,5 +1,8 @@
 package com.basic.jdk;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
 /**
  * @author haoxl
  * @Title: 测试抽象类
@@ -7,7 +10,9 @@ package com.basic.jdk;
  * @Description:
  * @date 2021/3/21 14:30
  */
-public abstract class TestAbstract {
+public abstract class TestAbstract implements DisposableBean {
+
+    protected String s;
 
     abstract void method1();
 

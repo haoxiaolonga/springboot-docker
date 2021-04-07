@@ -10,7 +10,7 @@ import java.util.List;
  * @Description:
  * @date 2021/3/21 15:22
  */
-public class TestOutOfMemory {
+public class TestOutOfMemery {
     private static final Integer K = 1024;
 
     public static void main(String[] args) {
