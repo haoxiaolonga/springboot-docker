@@ -31,7 +31,8 @@ public class MessageListener {
 
     @RabbitListener(bindings = @QueueBinding(value = @Queue(name = MessageConst.TEST_SEND_MESSAGE_QUEUE, durable = "true",
             arguments = {@Argument(name = "x-dead-letter-routing-key", value = MessageConst.DEFAULT_INDEX_CREATE_ROUTING_KEY),
-                    @Argument(name = "x-dead-letter-exchange", value = "doc.exchange.name")}),
+                    @Argument(name = "x-dead-letter-exchange", value = "doc.exchange.name"),
+                    @Argument(name = "x-message-ttl", value = "10000")}),
             exchange = @Exchange(name = MessageConst.TEST_SEND_MESSAGE_EXCHANGE),
             key = MessageConst.DEFAULT_INDEX_CREATE_ROUTING_KEY))
     public void messageListener(String sendedMessage, Channel channel, Message message) throws IOException {
@@ -94,7 +95,7 @@ public class MessageListener {
          * new
          * nested
          * never
-         * mandity
+         * mandatory
          * not_supported
          * support
          *

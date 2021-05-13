@@ -8,14 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicStampedReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author haoxl
@@ -77,13 +85,72 @@ public class TransactionalTest {
 //        semaphore.acquire(2);
 //
         Lock lock =new ReentrantLock();
-        lock.tryLock(2, TimeUnit.SECONDS);
-        AtomicInteger atomicInteger = new AtomicInteger();
-        atomicInteger.incrementAndGet();
+        AtomicStampedReference atomicStampedReference = new AtomicStampedReference(2,2);
 
-        HashSet<String> set  = new HashSet<>();
-        set.add("1");
-        set.add("1");
+//        lock.tryLock(2, TimeUnit.SECONDS);
+//        AtomicInteger atomicInteger = new AtomicInteger();
+//        atomicInteger.incrementAndGet();
+//
+//        HashSet<String> set  = new HashSet<>();
+//        set.add("1");
+//        set.add("1");
+//
+//
+    /*    HashMap hashMap = new HashMap(2);
+        hashMap.put(new Object(),new Object());
+//
+        ConcurrentHashMap hash2Map = new ConcurrentHashMap(2);
+        hash2Map.put(new Object(),new Object());
+        Long a = null;
+        System.out.println("123" + a);
+
+
+        ReentrantReadWriteLock lock22 = new ReentrantReadWriteLock();
+
+        CopyOnWriteArrayList arrayList = new CopyOnWriteArrayList();
+        arrayList.add(1);
+
+        List list = Collections.synchronizedList(new ArrayList<>());
+        list.add(1);
+
+        new Object().wait();
+        Thread.sleep(2);*/
+        CopyOnWriteArrayList arrayList = new CopyOnWriteArrayList();
+        arrayList.add(1);
+
+        ReentrantReadWriteLock loc22 = new ReentrantReadWriteLock();
+        Lock l2ock = loc22.readLock();
+
+        short t = 2;
+        HashMap hashtable = null;
+        hashtable.put(null,null);
+
+        HashMap map = new HashMap(2);
+        map.put(null,null);
+
+        ConcurrentHashMap map2 = new ConcurrentHashMap();
+        map2.put(null,null);
+
+
+        // 工厂模式 -- 返回的是抽象类或者接口的实现
+        Calendar.getInstance();
+        // 抽象工厂模式 -- 返回的是可以用来创建抽象类或者接口的工厂类。
+        XPathFactory.newInstance().newXPath();
+        // 生成器模式 创建方法返回的是实例本身，例如Stringbuffer 的 append 或者链式调用。
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("2");
+
+        //单例模式  枚举，懒汉，恶汉，
+        Runtime.getRuntime();
+
+        //适配器模式 接收一个与当前类不同抽象类或者接口的实例作为参数，返回一个经过修饰或者重写给定参数实例的抽象类或接口的实现。
+         List a = Arrays.asList();
+
+         //装饰器模式  通过构造方法返回一个增加了额外方法的参数实例。
+        List b = Collections.synchronizedList(new ArrayList<>());
+
+        //代理模式 proxy。newProxyInstance.
     }
+
 
 }

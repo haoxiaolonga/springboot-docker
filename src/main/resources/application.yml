@@ -20,8 +20,11 @@ spring:
     port: 5672
     # virtual-host: /bbc6.0
     virtual-host: testVirtual
+    #配置生产者确认和退回。
+    publisher-confirms: true
+    publisher-returns: true
 
-# redis相关配置
+  # redis相关配置
   redis:
     host: 127.0.0.1
     port: 6379
@@ -39,6 +42,7 @@ spring:
       database: test
       port: 27017
   profiles:
-    include: self,db
     active: dev
+    include: self,db
+
 
